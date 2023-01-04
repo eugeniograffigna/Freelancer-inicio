@@ -10,6 +10,7 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box; /* Hack para box mode */
+    scroll-snap-type: y mandatory;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -27,9 +28,9 @@ body {
 }
 
 .sombra {
-    -webkit-box-shadow: 0px 5px 15px 0px rgba(153,145,153,1);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(153,145,153,1);
-    box-shadow: 0px 5px 15px 0px rgba(153,145,153,1);
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
     background-color: var(--blanco);
     padding: 2rem;
     border-radius: 1rem;
@@ -49,6 +50,12 @@ body {
     border: none;
 }
 
+@media (min-width: 768px) {
+    .boton {
+        width: auto;
+    } 
+   
+}
 .boton:hover {
     cursor: pointer;
 } 
@@ -76,12 +83,7 @@ h1,h2,h3 {
 font-size: 2rem;
 }
 
-@media (min-width: 480px) {
-    .boton {
-        width: auto;
-    } 
-   
-}
+
 
 /* Utilidades */
 .w-sm-100 {
@@ -166,12 +168,12 @@ font-size: 2rem;
 } 
 
 /* Servicios */
-@media (min-width: 768px) { 
-   
+@media (min-width: 768px) {   
     .servicios {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 5rem;
+        grid-template-columns: repeat(3, 1fr); /*es otra forma de expresar lo mismo que arriba*/
+        column-gap: 1rem;
     }
 }
 
@@ -204,7 +206,7 @@ font-size: 2rem;
 /* Contacto */
 .formulario {
     background-color: var(--gris);
-    width: min(60rem, 100%); /* Utilizar el valor mas pequeño */
+    width: min(60rem, 100%); /* Utilizar el valor mas pequeño se usa este comando cuando no tenemos definidco display flex en el padre */
     margin: 0 auto;
     padding: 2rem;
     border-radius: 1rem;
@@ -227,34 +229,37 @@ font-size: 2rem;
 @media (min-width: 768px) { 
 .contenedor-campos {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto 20rem;
     column-gap: 1rem;
 }
 }
-.campo:nth-child(3) {
-    grid-column: 1/3;
-}
+.campo:nth-child(3),
 .campo:nth-child(4) {
-    grid-column: 1/4;
+    grid-column: 1/3;
 }
 
 .campo {
     margin-bottom: 1rem;
 }
 
+.campo textarea {
+    height: 18rem;
+}
+
 .campo label {
     color: var(--blanco);
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: .5rem;
     display: block;
 }
-.imput-tex {
+.input-tex {
     width: 100%;
     border: none;
     padding: 1.5rem;
     border-radius: .5rem;
 }
+
 
 .footer{
     text-align: center;
